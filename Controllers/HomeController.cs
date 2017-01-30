@@ -12,6 +12,7 @@ namespace stupid.Controllers
         [Route("")]
         public IActionResult Index()
         {
+            //new comment
             return View();
         }
     }
