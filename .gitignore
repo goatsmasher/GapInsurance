@@ -3,4 +3,4 @@ project.lock.json
 bin/
 .vscode/
 obj/
-
+appsettings.json
