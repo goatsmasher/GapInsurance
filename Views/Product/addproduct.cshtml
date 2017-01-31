@@ -1,0 +1,17 @@
+@{ ViewData["Title"] = "Add Account"; }
+
+<h1>Add Product</h1>
+
+    <form asp-controller="Product" asp-action="addproduct" method="post">
+        <label asp-for="product"></label>
+        <input asp-for="product" />
+        <span asp-validation-for="product"></span>
+        <label asp-for="description"></label>
+        <textarea cols="50" rows="10" asp-for="description" /></textarea>
+        <span asp-validation-for="description"></span>
+        <label asp-for="price"></label>
+        <input asp-for="price" />
+        <span asp-validation-for="price"></span>
+        <button type="submit">Create Product</button>
+    </form>
+
