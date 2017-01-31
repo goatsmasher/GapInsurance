@@ -20,7 +20,7 @@ namespace stupid.Controllers
         [Route("login")]
         public IActionResult Index()
         {
-            return View();
+            return View("login");
         }
         [HttpPost]
         [RouteAttribute("login")]
@@ -73,7 +73,7 @@ namespace stupid.Controllers
 
         }
         [HttpGet]
-        [RouteAttribute("myaccount")]
+        [RouteAttribute("account")]
         public IActionResult MyAccount()
         {
             //take session id here and pass some viewbags with that information

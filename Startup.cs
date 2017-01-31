@@ -28,6 +28,7 @@ namespace stupid
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
             services.AddScoped<UserFactory>();
             services.AddScoped<PackageFactory>();
+            services.AddScoped<ProductFactory>();
             services.AddScoped<CartFactory>();
         }
 

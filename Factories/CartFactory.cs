@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
 using Dapper;
-using Microsoft.AspNetCore.Server.Kestrel.Internal.Http;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 using stupid.Models;
