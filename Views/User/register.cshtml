@@ -1,0 +1,26 @@
+@{ ViewData["Title"] = "Register"; }
+<!--@model beltexam2.ViewModels.RegisterViewModel-->
+
+<div class="loginandreg">
+<h1>Register</h1>
+
+<form asp-controller="User" asp-action="register" method="post">
+    <label asp-for="first_name"></label>
+    <input asp-for="first_name"/>
+    <span asp-validation-for="first_name"></span>
+    <label asp-for="last_name"></label>
+    <input asp-for="last_name"/>
+    <span asp-validation-for="last_name"></span>
+    <label asp-for="email"></label>
+    <input asp-for="email"/>
+    <span asp-validation-for="email"></span>
+    <label asp-for="password"></label>
+    <input type="password" asp-for="password"/>
+    <span asp-validation-for="password"></span>
+    <label asp-for="compare"></label>
+    <input type="password" asp-for="compare"/>
+    <span asp-validation-for="compare"></span>
+    <button type="submit">Register</button>
+</form>
+<p>Already registered? <a href="/login">Login now!</>
+</div>
