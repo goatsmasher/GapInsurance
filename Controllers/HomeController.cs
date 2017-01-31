@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace stupid.Controllers
@@ -12,7 +9,6 @@ namespace stupid.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            //new comment
             return View();
         }
     }
