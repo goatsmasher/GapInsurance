@@ -19,10 +19,10 @@ namespace stupid.ViewModels
         [Required]
         [Display(Name = "Confirm Password")]
         [CompareAttribute("password", ErrorMessage = "Your passwords do not match")]
-        public string confirm_password { get; set; }
+        public string compare { get; set; }
         [Required]
         [EmailAddressAttribute]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string email { get; set; }
     }
 }

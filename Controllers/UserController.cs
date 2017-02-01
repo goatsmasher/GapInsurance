@@ -3,7 +3,6 @@ using stupid.Models;
 using stupid.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using stupid.ViewModels.LoginViewModel;
 using Microsoft.AspNetCore.Identity;
 
 namespace stupid.Controllers
@@ -11,9 +10,11 @@ namespace stupid.Controllers
     public class UserController : Controller
     {
         private readonly UserFactory UserFactory;
-        public UserController(UserFactory user)
+        private readonly PackageFactory PackageFactory;
+        public UserController(UserFactory user, PackageFactory package)
         {
             UserFactory = user;
+            PackageFactory = package;
         }
         // GET: /Home/
         [HttpGet]
@@ -24,7 +25,7 @@ namespace stupid.Controllers
         }
         [HttpPost]
         [RouteAttribute("login")]
-        public IActionResult Login(LoginViewModel user)
+        public IActionResult login(LoginViewModel user)
         {
             if (ModelState.IsValid)
             {
@@ -35,13 +36,13 @@ namespace stupid.Controllers
                     if (0 != Hasher.VerifyHashedPassword(this_user, this_user.password, user.password))
                     {
                         HttpContext.Session.SetInt32("userid", this_user.id);
-                        return RedirectToAction("CurrentAuctions", "Auction");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
             ViewBag.login_error = "Invalid Login Credentials";
             ModelState.Clear();
-            return View("Index");
+            return View("login");
         }
 
         [HttpGet]
@@ -59,9 +60,9 @@ namespace stupid.Controllers
             {
                 User this_user = UserFactory.AddWithReturn(user);
                 HttpContext.Session.SetInt32("userid", this_user.id);
-                return RedirectToAction("CurrentAuctions", "Auction");
+                return RedirectToAction("Index", "Home");
             }
-            return View("Index");
+            return View();
         }
 
         [HttpGet]
@@ -73,12 +74,12 @@ namespace stupid.Controllers
 
         }
         [HttpGet]
-        [RouteAttribute("account")]
+        [RouteAttribute("my_account")]
         public IActionResult MyAccount()
         {
             //take session id here and pass some viewbags with that information
-            // ViewBag.this_user = UserFactory.GetUser(id);
-            // ViewBag.user_coverage = PackageFactory.GetCoverage(id);
+            ViewBag.this_user = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid"));
+            // ViewBag.user_coverage = PackageFactory.GetCoverage((int)HttpContext.Session.GetInt32("userid"));
             return View("MyAccount");
         }
     }

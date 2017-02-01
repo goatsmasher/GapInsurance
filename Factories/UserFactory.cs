@@ -37,11 +37,22 @@ namespace stupid.Factory
         {
             using (IDbConnection dbConnection = Connection)
             {
+                dbConnection.Open();
+                bool makeadmin = FirstUser();
                 PasswordHasher<RegisterViewModel> Hasher = new PasswordHasher<RegisterViewModel>();
                 item.password = Hasher.HashPassword(item, item.password);
-                string query = "INSERT INTO users (first_name, last_name, username, password, created_at, updated_at) VALUES (@first_name, @last_name, @username, @password, NOW(), NOW()); SELECT LAST_INSERT_ID() as id";
-                dbConnection.Open();
-                return dbConnection.Query<User>(query, item).FirstOrDefault();
+                if (makeadmin == false)
+                {
+                    string query = "INSERT INTO user (first_name, last_name, email, password, admin, created_at, updated_at) VALUES (@first_name, @last_name, @email, @password, 1, NOW(), NOW())";
+                    dbConnection.Execute(query, item);
+                    return dbConnection.Query<User>(query, item).FirstOrDefault();
+                }
+                else
+                {
+                    string query = "INSERT INTO user (first_name, last_name, email, password, admin, created_at, updated_at) VALUES (@first_name, @last_name, @email, @password, 0, NOW(), NOW())";
+                    dbConnection.Execute(query, item);
+                    return dbConnection.Query<User>(query, item).FirstOrDefault();
+                }
             }
         }
         public User GetUser(int id)
@@ -51,12 +62,12 @@ namespace stupid.Factory
                 return dbConnection.Query<User>("SELECT * FROM users WHERE id = @id", new { id = id }).FirstOrDefault();
             }
         }
-        public User Login(string username)
+        public User Login(string email)
         {
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                return dbConnection.Query<User>("SELECT * FROM users WHERE username = @username", new { username = username }).FirstOrDefault();
+                return dbConnection.Query<User>("SELECT * FROM users WHERE email = @email", new { email = email }).FirstOrDefault();
             }
         }
         public IEnumerable<User> AllUsers()
@@ -66,6 +77,23 @@ namespace stupid.Factory
                 dbConnection.Open();
                 return dbConnection.Query<User>("SELECT * from users");
             }
+        }
+        public bool FirstUser()
+        {
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open(); //do i need to open this connection again if i only use it inside of another connection??
+                object result = dbConnection.Query<User>("SELECT * FROM user", new { admin = 1 }).FirstOrDefault(); ;
+                if (result == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
         }
     }
 }

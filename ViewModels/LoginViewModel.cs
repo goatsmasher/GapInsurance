@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace stupid.ViewModels.LoginViewModel
+namespace stupid.ViewModels
 {
     public class LoginViewModel
     {
