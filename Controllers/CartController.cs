@@ -24,7 +24,7 @@ namespace stupid.Controllers
         {
             //Get a viewbag of everything currently in the users cart through 
             //ViewBag.cart = CartFactory.GetCart()
-            return View("Cart");
+            return View("Cart", "Product");
         }
         [HttpGet]
         [RouteAttribute("Checkout")]
