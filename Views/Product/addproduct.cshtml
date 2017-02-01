@@ -1,17 +1,25 @@
-@{ ViewData["Title"] = "Add Account"; }
+@{ ViewData["Title"] = "Add Product"; }
+@model stupid.ViewModels.ProductViewModel
+
 
 <h1>Add Product</h1>
 
-    <form asp-controller="Product" asp-action="addproduct" method="post">
-        <label asp-for="product"></label>
-        <input asp-for="product" />
-        <span asp-validation-for="product"></span>
+    <form asp-controller="Product" asp-action="add_product" method="post">
+        <label asp-for="name"></label>
+        <input asp-for="name" />
+        <span asp-validation-for="name"></span>
         <label asp-for="description"></label>
         <textarea cols="50" rows="10" asp-for="description" /></textarea>
         <span asp-validation-for="description"></span>
-        <label asp-for="price"></label>
-        <input asp-for="price" />
-        <span asp-validation-for="price"></span>
+        <label asp-for="cost"></label>
+        <input asp-for="cost" />
+        <span asp-validation-for="cost"></span>
+        <label asp-for="category"></label>
+        <input asp-for="category" />
+        <span asp-validation-for="category"></span>
+        <label asp-for="img_src"></label>
+        <input asp-for="img_src" />
+        <span asp-validation-for="img_src"></span>
         <button type="submit">Create Product</button>
     </form>
 

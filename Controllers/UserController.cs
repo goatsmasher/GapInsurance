@@ -3,7 +3,7 @@ using stupid.Models;
 using stupid.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using stupid.ViewModels.LoginViewModel;
+using stupid.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace stupid.Controllers
