@@ -24,6 +24,7 @@ namespace stupid
         {
             // Add framework services.
             services.AddMvc();
+            services.AddMemoryCache();
             services.AddSession();
             services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
             services.AddScoped<UserFactory>();
