@@ -60,6 +60,7 @@ namespace stupid.Controllers
             {
                 User this_user = UserFactory.AddWithReturn(user);
                 HttpContext.Session.SetInt32("userid", this_user.id);
+                ViewBag.logged_in = (int)HttpContext.Session.GetInt32("userid");
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -70,15 +71,23 @@ namespace stupid.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
 
         }
         [HttpGet]
-        [RouteAttribute("my_account")]
+        [RouteAttribute("account")]
         public IActionResult MyAccount()
         {
+            if (HttpContext.Session.GetInt32("userid") == null)
+            {
+                return RedirectToAction("login", "User");
+            }
+            else
+            {
+                ViewBag.logged_in = (int)HttpContext.Session.GetInt32("userid");
+            }
             //take session id here and pass some viewbags with that information
-            ViewBag.this_user = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid"));
+            // ViewBag.this_user = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid"));
             // ViewBag.user_coverage = PackageFactory.GetCoverage((int)HttpContext.Session.GetInt32("userid"));
             return View("MyAccount");
         }

@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace stupid.ViewModels
 {
@@ -7,11 +10,17 @@ namespace stupid.ViewModels
         [Required]
         [Display(Name = "Product Name")]
         public string name { get; set; }
+        [Display(Name = "Cost")]
         [Required]
         public int cost { get; set; }
+        [Required]
+        [Display(Name = "Category")]
+        public string category { get; set; }
+        [Required]
         [Display(Name = "Description")]
-        public string catagory { get; set; }
         public string description { get; set; }
-        public string img_src { get; set; }
+        [Required]
+        [Display(Name = "Upload Image")]
+        public IFormFile img_src { get; set; }
     }
 }

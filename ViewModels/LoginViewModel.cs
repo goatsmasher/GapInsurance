@@ -12,5 +12,6 @@ namespace stupid.ViewModels
         [Display(Name = "Password")]
         [MinLength(8)]
         public string password { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }
