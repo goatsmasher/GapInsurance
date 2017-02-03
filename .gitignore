@@ -5,3 +5,5 @@ bin/
 obj/
 appsettings.json
 debug.log
+web.config
+.vs/

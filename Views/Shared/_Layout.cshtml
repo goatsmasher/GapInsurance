@@ -2,33 +2,32 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Gap Coverage</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Gap Coverage</title>
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
+    asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
-        asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-
-
-    <link rel="stylesheet" href="~/css/site.css" />
+  <link rel="stylesheet" href="~/css/site.css" />
 
 </head>
 
 <body>
-
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="/">Stupid</a>
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">Stupid</a>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/browse">Browse</a>
+        <ul class="navbar-nav mr-auto pull-right">
+          <li class="nav-item pull-right">
+            <a class="nav-link" href="/browse">Browse Policies</a>
           </li>
-          @{ if (@ViewBag.admin != null){
+          @{ if (@ViewBag.admin == 1){
           <li class="nav-item">
             <a class="nav-link" href="/add_product">Add Product</a>
           </li>
@@ -36,46 +35,52 @@
         </ul>
         <ul class="navbar-nav pull-right">
           <li class="nav-item dropdown pull-right">
-            <a class="nav-link dropdown-toggle" href="/browse" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01"> 
-              <a class="dropdown-item" href="account"><img src="../images/myprofile.png" height="22%" width="20%"> Profile</a>
-              <a class="dropdown-item" href="cart"><img src="../images/cart.png" height="22%" width="20%"> Cart</a>
-              <a class="dropdown-item pull-right" href="logout"><img src="../images/logout.png" height="22%" width="20%"> Log Out</a>
+            <a class="nav-link dropdown-toggle" href="~/browse" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="~/account"><img src="../images/myprofile.png" height="22%" width="20%"> Profile</a>
+              <a class="dropdown-item" href="~/cart"><img src="../images/cart.png" height="22%" width="20%"> Cart</a>
+              <a class="dropdown-item pull-right" href="~/logout"><img src="../images/logout.png" height="22%" width="20%"> Log Out</a>
             </div>
           </li>
         </ul>
       </div>
-    </nav>            
+  </nav>
+  @RenderBody()
 
-                @RenderBody()
 
-
-    <!-- Bootstrap core JavaScript
+  <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
     crossorigin="anonymous"></script>
-<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- CAN'T FIND FILE... IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+      crossorigin="anonymous"></script>
+      <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+      <!-- CAN'T FIND FILE... IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
 
-<script src="~/js/site.js" asp-append-version="true"></script>
+      <script src="~/js/site.js" asp-append-version="true"></script>
 
 
 
-@RenderSection("scripts", required: false)
+      @RenderSection("scripts", required: false)
 
 </body>
-<footer class="bd-footer" style="background-color:#292B2C">
+<footer class="bd-footer" style="background-color:#292B2C; padding: 1.5rem 0;">
   <div class="container">
     <ul class="list-inline text-center">
-      <li class="list-inline-item"><a target="_blank" href="https://github.com/goatsmasher"><img src="images/github-black-white.png" height="5%" width="5%"> Josh's GitHub</a></li>
-      <li class="list-inline-item"><a target="_blank" href="https://github.com/misterjuicebox"><img src="images/github-black-white.png" height="5%" width="5%"> Michael's GiHub</a></li>
+      <li class="list-inline-item">
+        <a target="_blank" href="https://github.com/goatsmasher"><img src="images/github-black-white.png" height="5%" width="5%"> Josh's GitHub</a>
+      </li>
+      <li class="list-inline-item">
+        <a target="_blank" href="https://github.com/misterjuicebox"><img src="images/github-black-white.png" height="5%" width="5%"> Michael's GiHub</a>
+      </li>
     </ul>
   </div>
 </footer>
+
 </html>

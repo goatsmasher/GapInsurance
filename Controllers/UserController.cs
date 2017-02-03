@@ -21,6 +21,10 @@ namespace stupid.Controllers
         [Route("login")]
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.admin = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid")).admin;
+            }
             return View("login");
         }
         [HttpPost]
@@ -60,7 +64,6 @@ namespace stupid.Controllers
             {
                 User this_user = UserFactory.AddWithReturn(user);
                 HttpContext.Session.SetInt32("userid", this_user.id);
-                ViewBag.logged_in = (int)HttpContext.Session.GetInt32("userid");
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -82,9 +85,9 @@ namespace stupid.Controllers
             {
                 return RedirectToAction("login", "User");
             }
-            else
+            if (HttpContext.Session.GetInt32("userid") != null)
             {
-                ViewBag.logged_in = (int)HttpContext.Session.GetInt32("userid");
+                ViewBag.admin = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid")).admin;
             }
             //take session id here and pass some viewbags with that information
             // ViewBag.this_user = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid"));

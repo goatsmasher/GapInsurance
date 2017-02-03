@@ -1,27 +1,131 @@
 @{ ViewData["Title"] = "Products"; }
 
-<img src="http://blog.gedimin.com/wp-content/uploads/Kernel.jpg" alt="kernal">
-<h1>Popcorn Kernal Teeth Coverage</h1>
-<h3>Price: $79</h3>
-<p>Take me to your leader! Switzerland is small and neutral! We are more like Germany, ambitious and misunderstood! And so we say goodbye to our beloved pet, Nibbler, who’s gone to a place where I, too, hope one day to go. The toilet. Anyhoo, your net-suits will allow you to experience Fry’s worm infested bowels as if you were actually wriggling through them.</p>
-<form action="/add_to_cart" method="post">
-    <input type="submit" value="Add to Cart">
+<!--<img src="~/images/products/@ViewBag.current_product.img_src" alt="kernal">
+<h1>@ViewBag.current_product.name</h1>
+<h3>Price: $@ViewBag.current_product.cost</h3>
+<p>@ViewBag.current_product.description</p>
+<form action="~/add_to_cart" method="post">
+    <input type="hidden" value="@ViewBag.current_product.id" name="product_id">
+    <input type="submit" value="Add To Cart">
 </form>
 
 <h2>Related Coverages</h2>
-
 <ul>
-   <li><img src="http://blog.gedimin.com/wp-content/uploads/Kernel.jpg" alt="kernal">
-        <h4>Popcorn Kernal Teeth</h4>
-        <p>Shorter description read more...</p>
-    </li>
-       <li><img src="http://blog.gedimin.com/wp-content/uploads/Kernel.jpg" alt="kernal">
-        <h4>Popcorn Kernal Teeth</h4>
-        <p>Shorter description read more...</p>
-    </li>
-       <li><img src="http://blog.gedimin.com/wp-content/uploads/Kernel.jpg" alt="kernal">
-        <h4>Popcorn Kernal Teeth</h4>
-        <p>Shorter description read more...</p>
-    </li>
-</ul>
+@{
+    foreach (var product in @ViewBag.related_coverages){
 
+   <li><img src="~/images/products/@product.img_src" alt="@product.name image">
+        <h4>@product.name</h4>
+        <p>@product.description</p>
+        <a href="/product/@product.id" class="btn btn-primary">Learn More</a>
+    </li>
+    }
+}
+</ul>-->
+
+<div class="container" style="margin-top:2%; margin-bottom: 2%">
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="~/images/products/@ViewBag.current_product.img_src" alt="@ViewBag.current_product.name image" class="image-responsive">
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>@ViewBag.current_product.name</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--<span class="label label-primary">Exclusive</span>-->
+                    <span class="badge badge-default">Popular</span>
+                    <span class="monospaced">Policy #@ViewBag.current_product.id</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><p></p>
+                    <p class="description">@ViewBag.current_product.description</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <span class="badge badge-info">@ViewBag.random</span><span> Reviews</span>
+                </div>
+                <div class="col-lg-6">
+                    @{
+                        int ratings = @ViewBag.ratings;
+                        while (ratings > 0){
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            ratings = ratings - 1;
+                        }
+                        int ratings2 = 5 - @ViewBag.ratings;
+                        while (ratings2 > 0){
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            ratings2 = ratings2 - 1;
+                        }
+                    }<span class="monospaced">@ViewBag.ratings stars</span>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12 bottom-rule">
+                    <h2 class="product-price">$@ViewBag.current_product.cost</h2>
+                    <p class="description"> for a 6 month policy</p>
+                </div>
+            </div>
+            <div class="row add-to-cart">
+                <div class="col-lg-12 product-qty">
+                    <span class="btn btn-default btn-lg btn-qty">
+                    </span>
+                    <div class="col-lg-6 text-left">
+                        <button class="btn btn-lg btn-brand btn-full-width">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+                <div class="col-lg-12 bottom-rule top-10"></div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-lg-12 top-10">
+                    <br>
+                    <p>To order by telephone, please call POTUS45 at <a href="tel:12024561111"> 1-202-456-1111</a></p>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+    <div class="row" style="margin-top:5%;">
+        <div class="col-lg-12">
+            <nav class="navbar navbar bg-inverse">
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Related Products
+            </h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. </p>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Feature Row -->
+    <div class="row">
+        @{ foreach(var product in @ViewBag.related_coverages){
+
+        <article class="col-md-4 article-intro">
+            <a href="/product/@product.id">
+                <img class="img-responsive img-rounded" src="~/images/products/@product.img_src" alt="@product.name" height="200px" width="300px">
+            </a>
+            <h3>
+                <p class="description">@product.name</p>
+            </h3>
+            <p>@product.description</p>
+            <a href="/product/@product.id" class="btn btn-primary">Learn More</a>
+        </article>
+        } }
+    </div>
+    <!-- /.row -->
+</div>

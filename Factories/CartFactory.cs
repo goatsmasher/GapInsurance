@@ -24,15 +24,15 @@ namespace stupid.Factory
         {
             using (IDbConnection dbConnection = Connection)
             {
-                return dbConnection.Query<Cart>("SELECT * FROM carts WHERE user_id = @id");
+                return dbConnection.Query<Cart>("SELECT * FROM carts WHERE Users_id = @id", new { id = id });
 
             }
         }
-        public void AddToCart(int id)
+        public void AddToCart(int product, int user)
         { //need to also pass the current id for logged in user
             using (IDbConnection dbConnection = Connection)
             {
-                dbConnection.Execute("INSERT INTO carts packageid and user_id"); //need to pass the item and the current user
+                dbConnection.Execute($"INSERT INTO carts (Products_id, Users_id, created_at, updated_at) VALUES ({product}, {user}, NOW(), NOW());");
             }
         }
         public void Checkout()

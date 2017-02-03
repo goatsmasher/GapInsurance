@@ -43,15 +43,14 @@ namespace stupid.Factory
                 item.password = Hasher.HashPassword(item, item.password);
                 if (makeadmin == false)
                 {
-                    string query = "INSERT INTO user (first_name, last_name, email, password, admin, created_at, updated_at) VALUES (@first_name, @last_name, @email, @password, 1, NOW(), NOW())";
+                    string query = "INSERT INTO users (first_name, last_name, email, password, admin, created_at, updated_at) VALUES (@first_name, @last_name, @email, @password, 1, NOW(), NOW()); SELECT LAST_INSERT_ID() as id";
                     dbConnection.Execute(query, item);
-                    return dbConnection.Query<User>(query, item).FirstOrDefault();
+                    return dbConnection.Query<User>(query, item).SingleOrDefault();
                 }
                 else
                 {
-                    string query = "INSERT INTO user (first_name, last_name, email, password, admin, created_at, updated_at) VALUES (@first_name, @last_name, @email, @password, 0, NOW(), NOW())";
-                    dbConnection.Execute(query, item);
-                    return dbConnection.Query<User>(query, item).FirstOrDefault();
+                    string query = "INSERT INTO users (first_name, last_name, email, password, admin, created_at, updated_at) VALUES (@first_name, @last_name, @email, @password, 0, NOW(), NOW()); SELECT LAST_INSERT_ID() as id";
+                    return dbConnection.Query<User>(query, item).SingleOrDefault();
                 }
             }
         }
@@ -84,7 +83,7 @@ namespace stupid.Factory
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open(); //do i need to open this connection again if i only use it inside of another connection??
-                object result = dbConnection.Query<User>("SELECT * FROM user", new { admin = 1 }).FirstOrDefault(); ;
+                object result = dbConnection.Query<User>("SELECT * FROM users", new { admin = 1 }).FirstOrDefault(); ;
                 if (result == null)
                 {
                     return false;

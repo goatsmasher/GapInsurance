@@ -50,7 +50,7 @@ namespace stupid.Factory
         {
             using (IDbConnection dbConnection = Connection) 
             {
-                return dbConnection.Query<Product>("SELECT * FROM products ORDER BY created_at LIMIT 3");
+                return dbConnection.Query<Product>("SELECT * FROM products ORDER BY created_at DESC LIMIT 3");
             }
         }
     }

@@ -1,31 +1,16 @@
 @{ ViewData["Title"] = "All Products"; }
-
-<form action="/search" method="post">
-    <input type="text" name="search">
-    <input type="submit" value="Search">
-</form>
-
 <h2>Gap Coverage Products</h2>
-<ul>
-    <li>
-        <a href="/product/{id}">
-            <img src="http://blog.gedimin.com/wp-content/uploads/Kernel.jpg" alt="kernal">
-            <h4>Popcorn Kernal Teeth</h4>
-            <p>Shorter description read more...</p>
-        </a>
-    </li>
-    <li>
-        <a href="/product/{id}">
-            <img src="http://blog.gedimin.com/wp-content/uploads/Kernel.jpg" alt="kernal">
-            <h4>Popcorn Kernal Teeth</h4>
-            <p>Shorter description read more...</p>
-        </a>
-    </li>
-    <li>
-        <a href="/product/{id}">
-            <img src="http://blog.gedimin.com/wp-content/uploads/Kernel.jpg" alt="kernal">
-            <h4>Popcorn Kernal Teeth</h4>
-            <p>Shorter description read more...</p>
-        </a>
-    </li>
-</ul>
+<div class="container">
+<div class="card-group">
+    @{ foreach (var product in @ViewBag.all_products){
+    <div class="card text-center" style="width:20rem;">
+        <img class="card-img-top" src="~/images/products/@product.img_src" height="300px" alt="@product.name picture" style="width:20rem;">
+        <div class="card-block" style="width:20rem;">
+            <h4 class="card-title">@product.name</h4>
+            <p class="card-text">@product.description</p>
+            <a href="/product/@product.id" class="btn btn-primary">Learn More</a>
+        </div>
+    </div>
+    } }
+</div>
+</div>

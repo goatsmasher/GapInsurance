@@ -1,28 +1,24 @@
 @{ ViewData["Title"] = "Shopping Cart"; }
 
 <h1>Shopping Cart</h1>
-
         <table>
+@{ if (@ViewBag.my_cart != null){
+
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
             </tr>
+}}
+@{    @foreach(var item in @ViewBag.my_cart){
+
             <tr>
-                <td>SE Asia Package</td>
-                <td>2</td>
-                <td>$395</td>
+                <td>@item.name</td>
+                <td>@item.quantity</td>
+                <td>$@item.cost</td>
             </tr>
-            <tr>
-                <td>Popcorn Kernal Teeth</td>
-                <td>1</td>
-                <td>$39</td>
-            </tr>
-            <tr>
-                <td>Delete A Voicemail</td>
-                <td>2</td>
-                <td>$58</td>
-            </tr>
+    }
+}
         </table>
 
     

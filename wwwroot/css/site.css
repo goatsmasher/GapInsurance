@@ -105,3 +105,4 @@ textarea {
   background-size:cover;
 }
 
+.monospaced { font-family: 'Ubuntu Mono', monospaced ; }

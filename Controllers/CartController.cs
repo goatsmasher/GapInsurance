@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using stupid.Factory;
 
@@ -6,9 +7,11 @@ namespace stupid.Controllers
     public class CartController : Controller
     {
         private readonly CartFactory CartFactory;
-        public CartController(CartFactory cart)
+        private readonly UserFactory UserFactory;
+        public CartController(CartFactory cart, UserFactory user)
         {
             CartFactory = cart;
+            UserFactory = user;
         }
         [HttpPost]
         [RouteAttribute("add_to_cart/{id}")]
@@ -22,13 +25,25 @@ namespace stupid.Controllers
         [RouteAttribute("cart")]
         public IActionResult ShowCart()
         {
-            //Get a viewbag of everything currently in the users cart through 
-            //ViewBag.cart = CartFactory.GetCart()
+            if (HttpContext.Session.GetInt32("userid") == null)
+            {
+                return RedirectToAction("login", "User");
+            }
+            if (HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.admin = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid")).admin;
+            }
+            ViewBag.my_cart = CartFactory.GetCart((int)HttpContext.Session.GetInt32("userid"));
             return View("Cart", "Product");
         }
         [HttpGet]
         [RouteAttribute("Checkout")]
-        public IActionResult Checkout(){
+        public IActionResult Checkout()
+        {
+            if (HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.admin = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid")).admin;
+            }
             //This will submit all the current items in the cart into database as owned by the users
             //CartFactory.Checkout();
             return RedirectToAction("MyAccount", "User");
