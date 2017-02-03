@@ -55,6 +55,7 @@ namespace stupid.Factory
                 }
             }
         }
+        
         public User GetUser(int id)
         {
             using (IDbConnection dbConnection = Connection)
