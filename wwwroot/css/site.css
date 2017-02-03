@@ -1,22 +1,69 @@
-/*Write all of your fucking CSS here*/
+/******** SITE WIDE *********/
 
 body {
   padding-top: 3em;
 }
 .body-content {
+  margin-top: 5rem;
   padding: 3rem 1.5rem;
-  text-align: center;
+
 }
 
-.wide {
+.info-block {
+  padding: 3rem 1.5rem;
+  background-color: rgba(0,0,0,.5);
+  border-radius: 5px;
+}
+
+.layer {
+    background-color: rgba(0,0,0,.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.info-block h1 {
+  margin-bottom: 2rem;
+  color: #E3E3E4;
+}
+
+.info-block label {
+  color: #E3E3E4;
+}
+
+.info-block p {
+  color: #E3E3E4;
+}
+
+/******** FORMS *********/
+
+input {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  padding: .3rem;
+}
+
+textarea {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 5px;
+}
+
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
+/******** HOME PAGE *********/
+
+.wide-home {
   width:100%;
-  height:650px;
+  height:700px;
   margin-top: 0px;
   padding-top: 0px;
   background-image:url('../images/pigsfly.jpg');
   background-size:cover;
 }
-
 
 .home-header {
     font-size: 6em;
@@ -34,5 +81,27 @@ body {
              0px 8px 13px rgba(0,0,0,0.1),
              0px 18px 23px rgba(0,0,0,0.1); 
     font-style: italic;   
-
 }
+
+/******** LOGIN PAGE *********/
+
+.wide-login {
+  max-width:100%;
+  height: 700px;
+  margin-top: 0px;
+  padding-top: 0px;
+  background-image:url('../images/man_eats_fish.jpg');
+  background-size:cover;
+}
+
+/******** ADD PRODUCT PAGE *********/
+
+.wide-add-product {
+  max-width:100%;
+  height: 700px;
+  margin-top: 0px;
+  padding-top: 0px;
+  background-image:url('../images/fancy_dog.jpg');
+  background-size:cover;
+}
+
