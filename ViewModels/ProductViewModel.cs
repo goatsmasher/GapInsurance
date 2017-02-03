@@ -12,7 +12,6 @@ namespace stupid.ViewModels
         public string name { get; set; }
         [Display(Name = "Cost")]
         [Required]
-        [Display(Name = "Cost")]
         public int cost { get; set; }
         [Required]
         [Display(Name = "Category")]
