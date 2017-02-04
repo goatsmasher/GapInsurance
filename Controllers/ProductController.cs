@@ -86,19 +86,20 @@ namespace stupid.Controllers
                 ViewBag.admin = UserFactory.GetUser((int)HttpContext.Session.GetInt32("userid")).admin;
             }
             Random ran = new Random();
-            ViewBag.ratings = ran.Next(1,6);
-            ViewBag.random = ran.Next(1,1001); //random number of reviews
+            ViewBag.ratings = ran.Next(1, 6); //random number of stars
+            ViewBag.random = ran.Next(1, 1001); //random number of reviews
             ViewBag.current_product = ProductFactory.GetProduct(id);
             ViewBag.related_coverages = ProductFactory.Related_Coverages();
             return View("product");
         }
         [HttpPost]
         [RouteAttribute("add_to_cart")]
-        public IActionResult add_to_cart(int product_id){
+        public IActionResult add_to_cart(int product_id)
+        {
             int user = (int)HttpContext.Session.GetInt32("userid");
             int to_cart = product_id;
             CartFactory.AddToCart(to_cart, user);
             return RedirectToAction("ShowCart", "Cart", to_cart);
         }
-    }   
+    }
 }

@@ -18,8 +18,8 @@ namespace stupid.Controllers
         public IActionResult AddToCart(int id)
         {
             //Add the submitted item to the current users cart
-            //CartFactory.Add(id);
-            return RedirectToAction("Index"); //this needs to redirect to either the users cart or keep them on them on current page with an ajax popup success notificaton
+            CartFactory.AddToCart(id, (int)HttpContext.Session.GetInt32("userid"));
+            return RedirectToAction("ShowCart"); //this needs to redirect to either the users cart or keep them on them on current page with an ajax popup success notificaton
         }
         [HttpGet]
         [RouteAttribute("cart")]

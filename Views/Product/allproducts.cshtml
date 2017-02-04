@@ -1,10 +1,10 @@
 @{ ViewData["Title"] = "All Products"; }
-<h2>Gap Coverage Products</h2>
 <div class="container">
+<h2 style="padding-top:3%; padding-bottom:3%">Gap Coverage Products</h2>
 <div class="card-group">
     @{ foreach (var product in @ViewBag.all_products){
     <div class="card text-center" style="width:20rem;">
-        <img class="card-img-top" src="~/images/products/@product.img_src" height="300px" alt="@product.name picture" style="width:20rem;">
+        <img class="card-img-top pull-center" src="~/images/products/@product.img_src" height="300px" alt="@product.name picture" style="">
         <div class="card-block" style="width:20rem;">
             <h4 class="card-title">@product.name</h4>
             <p class="card-text">@product.description</p>

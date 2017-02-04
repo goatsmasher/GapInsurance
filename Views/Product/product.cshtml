@@ -77,7 +77,9 @@
                     <span class="btn btn-default btn-lg btn-qty">
                     </span>
                     <div class="col-lg-6 text-left">
-                        <button class="btn btn-lg btn-brand btn-full-width">Add to Cart</button>
+                    <form action="~/add_to_cart/@ViewBag.current_product.id" method="post">
+                        <button class="btn btn-lg btn-warning btn-full-width">Add to Cart</button>
+                    </form>
                     </div>
                 </div>
             </div>
